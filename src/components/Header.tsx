@@ -34,8 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
     history: { title: 'Incident & Scan History', subtitle: 'Searchable audit trail of verified scans with retraining feedback loop' },
     quiz: { title: 'Cyber Awareness Simulation', subtitle: 'Interactive training module on spotting real-world Indian & global phishing lures' },
     emergency: { title: 'Emergency Response Guide', subtitle: 'Critical containment protocol if you already clicked or submitted credentials' },
-    settings: { title: 'System Configuration', subtitle: 'Engine sensitivity, API keys, retrain triggers, and theme settings' },
-    about: { title: 'Architecture & Threat Intelligence', subtitle: 'Comprehensive technical documentation on KAVACH multi-layer defense engine' }
+    settings: { title: 'System Configuration', subtitle: 'Engine sensitivity, API keys, retrain triggers, and theme settings' }
   };
 
   const activeInfo = titles[currentTab] || { title: 'KAVACH Armor', subtitle: 'Threat Defense' };

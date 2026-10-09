@@ -13,7 +13,6 @@ import {
   GraduationCap,
   AlertOctagon,
   Settings,
-  Info,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -25,13 +24,17 @@ interface SidebarProps {
   isCollapsed: boolean;
   onToggleCollapse: () => void;
   totalThreatsNeutralized?: number;
+  onOpenChatbot?: () => void;
+  isChatbotOpen?: boolean;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   currentTab,
   onSelectTab,
   isCollapsed,
-  onToggleCollapse
+  onToggleCollapse,
+  onOpenChatbot,
+  isChatbotOpen = false
 }) => {
   const navItems: Array<{ id: TabType; label: string; icon: React.ElementType; badge?: string; emergency?: boolean }> = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -46,7 +49,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'quiz', label: 'Awareness Quiz', icon: GraduationCap },
     { id: 'emergency', label: 'I Clicked a Link', icon: AlertOctagon, emergency: true },
     { id: 'settings', label: 'Settings', icon: Settings },
-    { id: 'about', label: 'About & Defense', icon: Info },
   ];
 
   return (
@@ -136,7 +138,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Emergency Help Badge on Sidebar Footer */}
       {!isCollapsed && (
-        <div className="p-2.5 mx-2 mb-16 rounded-xl bg-slate-50 border border-slate-200 shadow-xs">
+        <div className="p-2.5 mx-2 mb-2 rounded-xl bg-slate-50 border border-slate-200 shadow-xs shrink-0">
           <div className="flex items-center gap-2 mb-0.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_#22c55e]" />
             <span className="text-[11px] font-semibold text-slate-800">CERT-In Aligned</span>
@@ -146,6 +148,37 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
       )}
+
+      {/* Kavacham AI Bot in Sidebar Left-Most Bottom Footer */}
+      <div className="p-2 border-t border-slate-200 shrink-0">
+        <button
+          onClick={onOpenChatbot}
+          title={isChatbotOpen ? "Minimize Kavacham AI Bot" : "Open Kavacham AI Bot"}
+          className={`w-full flex items-center justify-between rounded-xl bg-gradient-to-r from-rose-600 via-rose-700 to-red-800 text-white font-bold text-xs shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer border border-rose-400/50 ${
+            isCollapsed ? 'p-2.5 justify-center' : 'px-3 py-2.5'
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <div className="relative shrink-0">
+              <Shield className="w-4 h-4 text-white animate-pulse" />
+              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-emerald-400 border border-rose-700 rounded-full" />
+            </div>
+            {!isCollapsed && (
+              <div className="flex flex-col text-left">
+                <span className="font-mono tracking-wide text-xs">KAVACHAM BOT</span>
+                <span className="text-[9px] text-rose-100 font-sans font-normal -mt-0.5">
+                  AI Defense • 24/7 Live
+                </span>
+              </div>
+            )}
+          </div>
+          {!isCollapsed && (
+            <span className="px-1.5 py-0.5 text-[9px] font-mono rounded bg-white/20 text-white border border-white/30">
+              {isChatbotOpen ? 'ACTIVE' : 'CHAT'}
+            </span>
+          )}
+        </button>
+      </div>
     </aside>
   );
 };

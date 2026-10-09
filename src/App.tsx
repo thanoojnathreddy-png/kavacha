@@ -18,7 +18,6 @@ import { HistoryView } from './components/views/HistoryView.tsx';
 import { QuizView } from './components/views/QuizView.tsx';
 import { EmergencyGuideView } from './components/views/EmergencyGuideView.tsx';
 import { SettingsView } from './components/views/SettingsView.tsx';
-import { AboutView } from './components/views/AboutView.tsx';
 import { KavachamChatbot } from './components/KavachamChatbot.tsx';
 import { TabType } from './types/index.ts';
 
@@ -47,6 +46,8 @@ export default function App() {
         onSelectTab={(tab) => handleNavigate(tab)}
         isCollapsed={isCollapsed}
         onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
+        onOpenChatbot={() => setIsChatbotOpen((prev) => !prev)}
+        isChatbotOpen={isChatbotOpen}
       />
 
       {/* Main Content Layout */}
@@ -77,7 +78,6 @@ export default function App() {
           {currentTab === 'quiz' && <QuizView />}
           {currentTab === 'emergency' && <EmergencyGuideView />}
           {currentTab === 'settings' && <SettingsView />}
-          {currentTab === 'about' && <AboutView />}
         </main>
       </div>
 

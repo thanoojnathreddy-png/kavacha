@@ -10,8 +10,7 @@ export type TabType =
   | 'history'
   | 'quiz'
   | 'emergency'
-  | 'settings'
-  | 'about';
+  | 'settings';
 
 export interface ShapContribution {
   feature: string;

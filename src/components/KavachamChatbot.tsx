@@ -297,46 +297,19 @@ export const KavachamChatbot: React.FC<KavachamChatbotProps> = ({
 
   return (
     <>
-      {/* Floating Trigger Button - Positioned at LEFT-MOST BOTTOM */}
-      {!isOpen && (
-        <div className={`fixed bottom-3 left-3 z-50 flex items-center select-none ${isCollapsed ? 'w-auto' : 'w-[232px]'}`}>
+      {/* Standalone Trigger Button (Only if uncontrolled and closed) */}
+      {!isControlled && !isOpen && (
+        <div className="fixed bottom-3 left-3 z-50 flex items-center select-none">
           <button
             onClick={() => {
               setIsOpen(true);
               setIsMinimized(false);
             }}
-            className={`group relative flex items-center justify-between rounded-xl bg-gradient-to-r from-rose-600 via-rose-700 to-red-800 text-white font-bold text-xs shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer border border-rose-400/60 ${
-              isCollapsed ? 'p-3 rounded-full' : 'w-full px-3.5 py-2.5'
-            }`}
+            className="group relative flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-700 to-red-800 text-white font-bold text-xs shadow-lg hover:shadow-xl cursor-pointer border border-rose-400/60"
             aria-label="Open Kavacham AI Chatbot"
-            title="Open Kavacham Cybersecurity Shield Chatbot"
           >
-            <div className="flex items-center gap-2.5">
-              <div className="relative shrink-0">
-                <Shield className="w-4 h-4 text-white animate-pulse" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 border border-rose-700 rounded-full" />
-              </div>
-              {!isCollapsed && (
-                <div className="flex flex-col text-left">
-                  <span className="font-mono tracking-wide text-xs">KAVACHAM BOT</span>
-                  <span className="text-[9px] text-rose-100 font-sans font-normal -mt-0.5">
-                    Cyber Shield AI • Live
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {!isCollapsed && (
-              <span className="px-1.5 py-0.5 text-[9px] font-mono rounded bg-white/20 text-white border border-white/30">
-                AI ACTIVE
-              </span>
-            )}
-
-            {unreadCount > 0 && isCollapsed && (
-              <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-[9px] bg-white text-rose-700 rounded-full font-bold shadow-xs">
-                {unreadCount}
-              </span>
-            )}
+            <Shield className="w-4 h-4 text-white animate-pulse" />
+            <span className="font-mono tracking-wide text-xs">KAVACHAM BOT</span>
           </button>
         </div>
       )}

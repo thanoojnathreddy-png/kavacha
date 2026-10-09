@@ -382,21 +382,21 @@ app.post(['/api/assistant', '/api/chat', '/api/chatbot'], async (req: Request, r
 Context: ${JSON.stringify(context, null, 2)}
 User Query: "${userMessage}"
 
-Respond concisely, authoritatively, and actionably. Provide immediate safety actions, analyze phishing tricks (fake KYC, UPI cashback deception, deceptive subdomains, typosquatting), and cite emergency protocols (Helpline 1930 / cybercrime.gov.in) if fraud is suspected. Keep answer under 160 words with bullet points.`;
+Respond concisely, authoritatively, and actionably. Provide immediate safety actions, analyze phishing tricks (fake KYC, UPI cashback deception, deceptive subdomains, typosquatting), and cite emergency protocols (Helpline 1930 / cybercrime.gov.in) if fraud is suspected. Keep answer concise (around 120-160 words) with clean bullet points. Always complete all sentences and finish your final thought cleanly.`;
 
     try {
       const generatePromise = ai.models.generateContent({
         model: 'gemini-3.1-flash-lite',
         contents: prompt,
         config: {
-          maxOutputTokens: 250,
-          temperature: 0.5
+          maxOutputTokens: 800,
+          temperature: 0.4
         }
       });
 
-      // 8-second safeguard timeout giving ample time for Gemini generation
+      // 5-second safeguard timeout giving ample time for Gemini generation
       const timeoutPromise = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('Inference timeout')), 8000)
+        setTimeout(() => reject(new Error('Inference timeout')), 5000)
       );
 
       const response = await Promise.race([generatePromise, timeoutPromise]);
