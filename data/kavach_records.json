@@ -1,0 +1,263 @@
+{
+  "scans": [
+    {
+      "id": "kavach-1791527777770-7f9ll",
+      "url": "http://onlinesbi-kyc-verify.top/update.html",
+      "verdict": "DANGEROUS",
+      "risk_score": 97,
+      "category": "Phishing",
+      "created_at": "2026-10-09T06:36:17.770Z",
+      "details": {
+        "latency_ms": 23,
+        "reasons": [
+          "Brand 'SBI' imitated via typosquatting/subdomain deception.",
+          "High-risk top-level domain frequently abused in disposable phishing campaigns.",
+          "Contains high-risk credential keywords (login/verify/update/kyc) in URL structure.",
+          "Domain was registered recently (12 days ago), a hallmark of disposable infrastructure.",
+          "HTML login form exfiltrates submitted credentials to an external host."
+        ],
+        "ip": "104.21.75.12"
+      }
+    },
+    {
+      "id": "kavach-1791526770042-ufkjl",
+      "url": "https://spy-x-family.fandom.com/wiki/Anya_Forger",
+      "verdict": "SAFE",
+      "risk_score": 6,
+      "category": "Benign",
+      "created_at": "2026-10-09T06:19:30.042Z",
+      "details": {
+        "latency_ms": 165,
+        "reasons": [
+          "Domain has established age, valid cryptographic certificates, and authentic DNS records.",
+          "No brand impersonation or obfuscation patterns detected."
+        ],
+        "ip": "172.66.2.166"
+      }
+    },
+    {
+      "id": "kavach-1791526756004-ry59a",
+      "url": "https://www.gooogle-example-xyz.com",
+      "verdict": "SUSPICIOUS",
+      "risk_score": 34,
+      "category": "Phishing",
+      "created_at": "2026-10-09T06:19:16.004Z",
+      "details": {
+        "latency_ms": 293,
+        "reasons": [
+          "Multiple statistical anomalies detected across lexical entropy and query depth."
+        ],
+        "ip": "104.21.75.12"
+      }
+    },
+    {
+      "id": "kavach-1791526629073-ciol1",
+      "url": "https://netbanking.hdfcbank.com/netbanking",
+      "verdict": "SAFE",
+      "risk_score": 25,
+      "category": "Benign",
+      "created_at": "2026-10-09T06:17:09.073Z",
+      "details": {
+        "latency_ms": 1133,
+        "reasons": [
+          "Contains high-risk credential keywords (login/verify/update/kyc) in URL structure."
+        ],
+        "ip": "172.65.90.11"
+      }
+    },
+    {
+      "id": "kavach-1791526622026-vkj99",
+      "url": "http://onlinesbi-kyc-verify.top/update.html",
+      "verdict": "DANGEROUS",
+      "risk_score": 96,
+      "category": "Phishing",
+      "created_at": "2026-10-09T06:17:02.026Z",
+      "details": {
+        "latency_ms": 315,
+        "reasons": [
+          "Brand 'SBI' imitated via typosquatting/subdomain deception.",
+          "High-risk top-level domain frequently abused in disposable phishing campaigns.",
+          "Contains high-risk credential keywords (login/verify/update/kyc) in URL structure.",
+          "Domain was registered recently (12 days ago), a hallmark of disposable infrastructure.",
+          "HTML login form exfiltrates submitted credentials to an external host."
+        ],
+        "ip": "104.21.75.12"
+      }
+    },
+    {
+      "id": "kavach-1791525758460-bshzl",
+      "url": "https://spy-x-familhttps://spy-x-family.fandom.com/wiki/Anya_Forgery.fandom.com/wiki/Anya_Forger",
+      "verdict": "SUSPICIOUS",
+      "risk_score": 65,
+      "category": "Phishing",
+      "created_at": "2026-10-09T06:02:38.460Z",
+      "details": {
+        "latency_ms": 150,
+        "reasons": [
+          "Multiple statistical anomalies detected across lexical entropy and query depth."
+        ],
+        "ip": "104.21.75.12"
+      }
+    },
+    {
+      "id": "kavach-1791525694973-zr0np",
+      "url": "http://onlinesbi-kyc-verify.top/update.html",
+      "verdict": "DANGEROUS",
+      "risk_score": 96,
+      "category": "Phishing",
+      "created_at": "2026-10-09T06:01:34.973Z",
+      "details": {
+        "latency_ms": 24,
+        "reasons": [
+          "Brand 'SBI' imitated via typosquatting/subdomain deception.",
+          "High-risk top-level domain frequently abused in disposable phishing campaigns.",
+          "Contains high-risk credential keywords (login/verify/update/kyc) in URL structure.",
+          "Domain was registered recently (12 days ago), a hallmark of disposable infrastructure.",
+          "HTML login form exfiltrates submitted credentials to an external host."
+        ],
+        "ip": "104.21.75.12"
+      }
+    },
+    {
+      "id": "kavach-1791525586044-93s2y",
+      "url": "https://google.com",
+      "verdict": "SAFE",
+      "risk_score": 2,
+      "category": "Benign",
+      "created_at": "2026-10-09T05:59:46.044Z",
+      "details": {
+        "latency_ms": 79,
+        "reasons": [
+          "Domain has established age, valid cryptographic certificates, and authentic DNS records.",
+          "No brand impersonation or obfuscation patterns detected."
+        ],
+        "ip": "108.177.125.101"
+      }
+    },
+    {
+      "id": "kavach-1791524471563-zmjzs",
+      "url": "https://netbanking.hdfcbank.com/netbanking",
+      "verdict": "SAFE",
+      "risk_score": 25,
+      "category": "Benign",
+      "created_at": "2026-10-09T05:41:11.563Z",
+      "details": {
+        "latency_ms": 813,
+        "reasons": [
+          "Contains high-risk credential keywords (login/verify/update/kyc) in URL structure."
+        ],
+        "ip": "172.65.90.8"
+      }
+    },
+    {
+      "id": "kavach-1791524442173-mokd3",
+      "url": "https://netbanking.hdfcbank.com/netbanking",
+      "verdict": "SUSPICIOUS",
+      "risk_score": 64,
+      "category": "Phishing",
+      "created_at": "2026-10-09T05:40:42.173Z",
+      "details": {
+        "latency_ms": 973,
+        "reasons": [
+          "Brand 'HDFC' imitated via typosquatting/subdomain deception.",
+          "Contains high-risk credential keywords (login/verify/update/kyc) in URL structure."
+        ],
+        "ip": "172.65.90.9"
+      }
+    },
+    {
+      "id": "kavach-1791524433942-k8ww7",
+      "url": "http://onlinesbi-kyc-verify.top/update.html",
+      "verdict": "DANGEROUS",
+      "risk_score": 96,
+      "category": "Phishing",
+      "created_at": "2026-10-09T05:40:33.942Z",
+      "details": {
+        "latency_ms": 128,
+        "reasons": [
+          "Brand 'SBI' imitated via typosquatting/subdomain deception.",
+          "High-risk top-level domain frequently abused in disposable phishing campaigns.",
+          "Contains high-risk credential keywords (login/verify/update/kyc) in URL structure.",
+          "Domain was registered recently (12 days ago), a hallmark of disposable infrastructure.",
+          "HTML login form exfiltrates submitted credentials to an external host."
+        ],
+        "ip": "104.21.75.12"
+      }
+    },
+    {
+      "id": "scan-sbi-991",
+      "url": "http://onlinesbi-kyc-reactivate.top/update",
+      "verdict": "DANGEROUS",
+      "risk_score": 94,
+      "category": "Phishing",
+      "created_at": "2026-10-09T03:40:18.109Z",
+      "details": {
+        "top_reasons": [
+          "Brand SBI imitated via typosquatting",
+          "Disposable .top TLD",
+          "Credential harvest keyword \"kyc\""
+        ]
+      }
+    },
+    {
+      "id": "scan-hdfc-882",
+      "url": "https://netbanking.hdfcbank.com/netbanking",
+      "verdict": "SAFE",
+      "risk_score": 4,
+      "category": "Benign",
+      "created_at": "2026-10-09T01:40:18.110Z",
+      "details": {
+        "top_reasons": [
+          "Official banking domain",
+          "Valid Extended Validation TLS",
+          "Established age > 20 years"
+        ]
+      }
+    },
+    {
+      "id": "scan-mal-773",
+      "url": "http://download-patch-update.xyz/invoice_update.pdf.exe",
+      "verdict": "DANGEROUS",
+      "risk_score": 98,
+      "category": "Malware",
+      "created_at": "2026-10-08T23:40:18.110Z",
+      "details": {
+        "top_reasons": [
+          "Double executable extension (.pdf.exe)",
+          "Known malware host IP"
+        ]
+      }
+    },
+    {
+      "id": "scan-irctc-664",
+      "url": "https://irctc-ticket-refund-fast.buzz/claim",
+      "verdict": "DANGEROUS",
+      "risk_score": 91,
+      "category": "Phishing",
+      "created_at": "2026-10-08T19:40:18.110Z",
+      "details": {
+        "top_reasons": [
+          "IRCTC refund scam pattern",
+          "Domain age under 3 days"
+        ]
+      }
+    },
+    {
+      "id": "scan-google-555",
+      "url": "https://google.com",
+      "verdict": "SAFE",
+      "risk_score": 2,
+      "category": "Benign",
+      "created_at": "2026-10-08T15:40:18.110Z",
+      "details": {
+        "top_reasons": [
+          "Reputable search engine domain",
+          "EV Certificate"
+        ]
+      }
+    }
+  ],
+  "feedbacks": [],
+  "retrain_count": 14,
+  "last_retrain_time": "2026-10-07T05:40:18.110Z"
+}

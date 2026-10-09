@@ -1,0 +1,6 @@
+{
+  "name": "KAVACH - Armor Against Phishing & Malicious URLs",
+  "description": "Production-grade cybersecurity intelligence platform for real-time phishing, malware, and social engineering threat detection with explainable ML diagnostics and network analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

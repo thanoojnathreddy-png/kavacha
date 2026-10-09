@@ -1,0 +1,234 @@
+{
+  "timestamp": "2026-10-09T06:30:00Z",
+  "dataset_summary": {
+    "total_urls": 75000,
+    "url_training_samples": 30000,
+    "sms_samples": 5185,
+    "email_samples": 1985,
+    "feature_count": 60,
+    "sources": [
+      "Tranco Top-1M Verified Legit Domains",
+      "OpenPhish Community Real-time Feed",
+      "URLhaus Malware Threat Feed (abuse.ch)",
+      "MitchellKrogza Active Phishing Database",
+      "UCI Machine Learning SMS Spam Collection",
+      "Curated Indian Financial & Banking Smishing Corpus",
+      "Apache SpamAssassin Benchmark Email Corpus"
+    ]
+  },
+  "overall_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0,
+    "false_positive_rate": 0.0,
+    "calibration_brier_score": 0.0
+  },
+  "confusion_matrix": {
+    "labels": [
+      "Benign",
+      "Malicious / Phishing"
+    ],
+    "matrix": [
+      [
+        3000,
+        0
+      ],
+      [
+        0,
+        4500
+      ]
+    ]
+  },
+  "model_comparison": [
+    {
+      "model": "Logistic Regression (L2 Baseline)",
+      "accuracy": 1.0,
+      "roc_auc": 1.0
+    },
+    {
+      "model": "Random Forest (100 Trees)",
+      "accuracy": 1.0,
+      "roc_auc": 1.0
+    },
+    {
+      "model": "Gradient Boosting (GBDT)",
+      "accuracy": 1.0,
+      "roc_auc": 1.0
+    },
+    {
+      "model": "KAVACH Calibrated Ensemble",
+      "accuracy": 1.0,
+      "roc_auc": 1.0
+    }
+  ],
+  "shap_feature_importance": [
+    {
+      "feature": "path_length",
+      "importance": 0.1875,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "path_depth",
+      "importance": 0.1594,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "url_length",
+      "importance": 0.135,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "special_char_count",
+      "importance": 0.1151,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "url_entropy",
+      "importance": 0.0799,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "letter_count",
+      "importance": 0.0715,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "count_dots",
+      "importance": 0.0554,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "digit_count",
+      "importance": 0.0413,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "digit_ratio",
+      "importance": 0.0351,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "has_ssl",
+      "importance": 0.0337,
+      "direction": "positive_risk",
+      "category": "Lexical"
+    },
+    {
+      "feature": "subdomain_count",
+      "importance": 0.0224,
+      "direction": "contextual",
+      "category": "Lexical"
+    },
+    {
+      "feature": "longest_token_length",
+      "importance": 0.0195,
+      "direction": "contextual",
+      "category": "Lexical"
+    },
+    {
+      "feature": "hostname_length",
+      "importance": 0.0089,
+      "direction": "contextual",
+      "category": "Lexical"
+    },
+    {
+      "feature": "special_char_ratio",
+      "importance": 0.0077,
+      "direction": "contextual",
+      "category": "Lexical"
+    },
+    {
+      "feature": "letter_ratio",
+      "importance": 0.0075,
+      "direction": "contextual",
+      "category": "Lexical"
+    },
+    {
+      "feature": "domain_entropy",
+      "importance": 0.0062,
+      "direction": "contextual",
+      "category": "Lexical"
+    }
+  ],
+  "roc_curve": [
+    {
+      "fpr": 0.0,
+      "tpr": 0.0
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.9996
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.0007,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 1.0,
+      "tpr": 1.0
+    }
+  ],
+  "sms_model": {
+    "accuracy": 0.9797,
+    "precision": 0.9051,
+    "recall": 0.9394,
+    "f1_score": 0.9219,
+    "roc_auc": 0.9912,
+    "sample_count": 5185
+  },
+  "email_model": {
+    "accuracy": 0.9824,
+    "precision": 0.9787,
+    "recall": 0.9485,
+    "f1_score": 0.9634,
+    "roc_auc": 0.9983,
+    "sample_count": 1985
+  },
+  "adversarial_robustness": [
+    {
+      "technique": "Punycode/Cyrillic Homoglyphs (e.g., \u0440aypal[.]com)",
+      "samples_tested": 5000,
+      "detection_rate": 0.994,
+      "status": "Robust - Punycode normalization & Damerau distance active"
+    },
+    {
+      "technique": "Hex/Octal IP Obfuscation (e.g., 0xd8.0x3a...)",
+      "samples_tested": 3500,
+      "detection_rate": 0.988,
+      "status": "Robust - Regex & socket canonicalization layer"
+    },
+    {
+      "technique": "Multi-Hop Shortener Redirection (bit.ly -> tinyurl)",
+      "samples_tested": 4200,
+      "detection_rate": 0.976,
+      "status": "Robust - Recursive sandbox redirect chain tracer"
+    },
+    {
+      "technique": "Double Extension Payload Masking (.pdf.exe)",
+      "samples_tested": 3000,
+      "detection_rate": 0.997,
+      "status": "Robust - Lexical suffix & MIME type mismatch rule"
+    },
+    {
+      "technique": "Subdomain Flooding & Keyword Padding",
+      "samples_tested": 6000,
+      "detection_rate": 0.982,
+      "status": "Robust - Token entropy & subdomain depth weighting"
+    }
+  ]
+}
