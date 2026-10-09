@@ -11,7 +11,6 @@ import {
   Compass,
   History,
   GraduationCap,
-  Bot,
   AlertOctagon,
   Settings,
   Info,
@@ -45,7 +44,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'redirect_map', label: 'Redirect & Map', icon: Compass },
     { id: 'history', label: 'Scan History', icon: History },
     { id: 'quiz', label: 'Awareness Quiz', icon: GraduationCap },
-    { id: 'assistant', label: 'Kavach Assistant', icon: Bot },
     { id: 'emergency', label: 'I Clicked a Link', icon: AlertOctagon, emergency: true },
     { id: 'settings', label: 'Settings', icon: Settings },
     { id: 'about', label: 'About & Defense', icon: Info },
@@ -64,7 +62,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <Shield className="w-5 h-5 text-white" />
           </div>
           {!isCollapsed && (
-            <div className="flex flex-col">
+            <div className="flex flex-col justify-center">
               <div className="flex items-baseline gap-1.5">
                 <span className="font-extrabold tracking-wider text-slate-900 text-lg font-mono">
                   KAVACH
@@ -73,9 +71,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   कवच
                 </span>
               </div>
-              <span className="text-[10px] text-slate-500 tracking-tight leading-tight">
-                Your Armor Against Phishing
-              </span>
             </div>
           )}
         </div>
@@ -90,7 +85,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex-1 px-2 py-3 overflow-y-auto space-y-1">
+      <nav className="flex-1 px-2 py-3 overflow-y-auto space-y-1 pb-24">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentTab === item.id;
@@ -141,13 +136,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Emergency Help Badge on Sidebar Footer */}
       {!isCollapsed && (
-        <div className="p-3 m-2 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-          <div className="flex items-center gap-2 mb-1">
+        <div className="p-2.5 mx-2 mb-16 rounded-xl bg-slate-50 border border-slate-200 shadow-xs">
+          <div className="flex items-center gap-2 mb-0.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_#22c55e]" />
-            <span className="text-[11px] font-semibold text-slate-800">CERT-In / Cyber Defense</span>
+            <span className="text-[11px] font-semibold text-slate-800">CERT-In Aligned</span>
           </div>
           <div className="text-[10px] text-slate-500 font-mono">
-            Emergency Helpline: <span className="text-rose-600 font-bold">1930</span>
+            Cyber Helpline: <span className="text-rose-600 font-bold">1930</span>
           </div>
         </div>
       )}

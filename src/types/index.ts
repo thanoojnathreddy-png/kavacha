@@ -9,7 +9,6 @@ export type TabType =
   | 'redirect_map'
   | 'history'
   | 'quiz'
-  | 'assistant'
   | 'emergency'
   | 'settings'
   | 'about';

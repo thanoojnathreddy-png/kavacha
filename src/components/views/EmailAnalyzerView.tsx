@@ -61,10 +61,6 @@ SBI Security Operations`;
           </button>
         </div>
 
-        <p className="text-xs text-slate-500">
-          Paste the raw email body or complete MIME headers. The analyzer extracts embedded URLs, identifies sender spoofing mismatches, and flags coercive urgency triggers.
-        </p>
-
         <textarea
           rows={8}
           value={emailText}

@@ -33,7 +33,6 @@ export const Header: React.FC<HeaderProps> = ({
     redirect_map: { title: 'Redirect Tracer & Threat Map', subtitle: 'Hop-by-hop HTTP redirect chain tracing and global server geolocation' },
     history: { title: 'Incident & Scan History', subtitle: 'Searchable audit trail of verified scans with retraining feedback loop' },
     quiz: { title: 'Cyber Awareness Simulation', subtitle: 'Interactive training module on spotting real-world Indian & global phishing lures' },
-    assistant: { title: 'Kavach AI Security Advisor', subtitle: 'Instant incident consultation and actionable cyber defense countermeasures' },
     emergency: { title: 'Emergency Response Guide', subtitle: 'Critical containment protocol if you already clicked or submitted credentials' },
     settings: { title: 'System Configuration', subtitle: 'Engine sensitivity, API keys, retrain triggers, and theme settings' },
     about: { title: 'Architecture & Threat Intelligence', subtitle: 'Comprehensive technical documentation on KAVACH multi-layer defense engine' }
@@ -53,9 +52,6 @@ export const Header: React.FC<HeaderProps> = ({
             ONLINE
           </span>
         </h1>
-        <p className="text-xs text-slate-500 hidden sm:block">
-          {activeInfo.subtitle}
-        </p>
       </div>
 
       <div className="flex items-center gap-3">

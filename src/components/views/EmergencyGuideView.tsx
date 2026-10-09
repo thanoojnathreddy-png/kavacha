@@ -12,9 +12,6 @@ export const EmergencyGuideView: React.FC = () => {
             <h2 className="text-xl font-black text-slate-900 font-mono tracking-wide">
               EMERGENCY INCIDENT CONTAINMENT PROTOCOL
             </h2>
-            <p className="text-xs text-red-700 font-medium">
-              Immediate triage steps if you already clicked a suspicious link, entered credentials, or authorized a payment.
-            </p>
           </div>
         </div>
 

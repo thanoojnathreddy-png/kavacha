@@ -77,10 +77,6 @@ export const QrScannerView: React.FC = () => {
           </div>
         </div>
 
-        <p className="text-xs text-slate-500">
-          Decodes QR code images and camera snapshots. Inspects web destinations and detects deceptive UPI payment requests pretending to be cashback or refunds.
-        </p>
-
         {/* Upload Zone */}
         <div
           onClick={() => fileInputRef.current?.click()}

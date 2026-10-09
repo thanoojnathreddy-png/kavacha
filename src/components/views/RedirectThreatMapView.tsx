@@ -81,10 +81,6 @@ export const RedirectThreatMapView: React.FC = () => {
           </div>
         </div>
 
-        <p className="text-xs text-slate-500">
-          Recursively follows HTTP 301, 302, 307 redirects to uncover final landing URLs concealed behind multi-tier URL shorteners and bulletproof proxies.
-        </p>
-
         {/* Timeline Visualizer */}
         <div className="space-y-4 pt-4">
           {chain.map((hop, idx) => (

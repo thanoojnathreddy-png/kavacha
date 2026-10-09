@@ -81,9 +81,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
             <h2 className="text-2xl font-black text-slate-900 tracking-tight font-mono">
               KAVACH THREAT INTELLIGENCE RADAR
             </h2>
-            <p className="text-sm text-slate-600 max-w-2xl mt-1">
-              Multi-layer neural stacking ensemble continuously analyzing 60+ topological, cryptographic, and lexical vectors across 540k+ verified threat signatures.
-            </p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -170,9 +167,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
                 <TrendingUp className="w-4 h-4 text-rose-600" />
                 7-Day Attack Volume & Mitigation Trend
               </h3>
-              <p className="text-xs text-slate-500">
-                Correlation between incoming scans and blocked malicious payloads
-              </p>
             </div>
             <span className="text-xs font-mono text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
               Live Feed

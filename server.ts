@@ -39,14 +39,24 @@ const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 
-// Initialize Gemini client if API key is present
-const geminiApiKey = process.env.GEMINI_API_KEY;
-let aiClient: GoogleGenAI | null = null;
-if (geminiApiKey && geminiApiKey !== 'MY_GEMINI_API_KEY') {
+// Initialize Gemini client helper
+function getAiClient(): GoogleGenAI | null {
+  const geminiApiKey = process.env.GEMINI_API_KEY;
+  if (!geminiApiKey || geminiApiKey === 'MY_GEMINI_API_KEY') {
+    return null;
+  }
   try {
-    aiClient = new GoogleGenAI({ apiKey: geminiApiKey });
+    return new GoogleGenAI({
+      apiKey: geminiApiKey,
+      httpOptions: {
+        headers: {
+          'User-Agent': 'aistudio-build'
+        }
+      }
+    });
   } catch (e) {
     console.warn('Gemini client initialization notice:', e);
+    return null;
   }
 }
 
@@ -356,61 +366,121 @@ app.get('/api/report/:id', (req: Request, res: Response) => {
   });
 });
 
-// 11. Kavach AI Security Advisor Chat
-app.post('/api/assistant', async (req: Request, res: Response) => {
-  const userMessage = (req.body.message || '').trim();
-  const context = req.body.context || {};
+// 11. Kavach AI Security Advisor Chat (supports /api/assistant, /api/chat, /api/chatbot)
+app.post(['/api/assistant', '/api/chat', '/api/chatbot'], async (req: Request, res: Response) => {
+  const userMessage = (req.body?.message || req.body?.prompt || req.body?.query || req.body?.text || '').trim();
+  const context = req.body?.context || {};
 
   if (!userMessage) {
     return res.status(400).json({ error: 'Message cannot be empty' });
   }
 
-  // Attempt using Gemini API if available
-  if (aiClient) {
+  // Attempt using Gemini API if client is available
+  const ai = getAiClient();
+  if (ai) {
+    const prompt = `You are "KAVACH Assistant", an elite cybersecurity threat analyst and digital armor for Indian and global web safety.
+Context: ${JSON.stringify(context, null, 2)}
+User Query: "${userMessage}"
+
+Respond concisely, authoritatively, and actionably. Provide immediate safety actions, analyze phishing tricks (fake KYC, UPI cashback deception, deceptive subdomains, typosquatting), and cite emergency protocols (Helpline 1930 / cybercrime.gov.in) if fraud is suspected. Keep answer under 160 words with bullet points.`;
+
     try {
-      const prompt = `You are "KAVACH Assistant", an elite cybersecurity threat analyst and digital armor for Indian and global web safety.
-Context from active scan: ${JSON.stringify(context, null, 2)}
-User question: "${userMessage}"
-
-Respond concisely, authoritatively, and actionably. Provide immediate safety actions, explain phishing tricks (like typosquatting, deceptive subdomains, fake KYC, UPI cashback fraud), and provide official emergency steps (Helpline 1930 / cybercrime.gov.in) if fraud is suspected. Keep answer under 160 words with bullet points where appropriate.`;
-
-      const response = await aiClient.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: prompt
+      const generatePromise = ai.models.generateContent({
+        model: 'gemini-3.1-flash-lite',
+        contents: prompt,
+        config: {
+          maxOutputTokens: 250,
+          temperature: 0.5
+        }
       });
 
-      if (response && response.text) {
-        return res.json({ reply: response.text });
+      // 8-second safeguard timeout giving ample time for Gemini generation
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Inference timeout')), 8000)
+      );
+
+      const response = await Promise.race([generatePromise, timeoutPromise]);
+
+      if (response && response.text && response.text.trim().length > 0) {
+        const text = response.text.trim();
+        return res.json({
+          reply: text,
+          response: text,
+          message: text,
+          text,
+          status: 'ok',
+          model: 'gemini-3.1-flash-lite'
+        });
       }
     } catch (e: any) {
-      console.warn('Gemini inference fallback:', e.message);
+      console.warn('Gemini inference notice:', e?.message || e);
     }
   }
 
-  // Robust Rule-Based Security Advisor Fallback
-  let reply = "🛡️ **KAVACH Security Advisor Response**:\n\n";
+  // Robust Contextual Cybersecurity Advisor Knowledge Engine Fallback
+  let reply = "🛡️ **KAVACH Security Advisor**:\n\n";
   const lower = userMessage.toLowerCase();
 
-  if (lower.includes('kyc') || lower.includes('bank') || lower.includes('sbi') || lower.includes('otp')) {
-    reply += "Banks (SBI, HDFC, ICICI, etc.) NEVER ask for KYC updates, PINs, or password links via SMS or email.\n\n" +
+  if (lower.startsWith('hi') || lower.startsWith('hello') || lower.startsWith('hey') || lower === 'test') {
+    reply = "🛡️ **Namaste! I am KAVACH Assistant**, your 24/7 Cybersecurity Shield.\n\n" +
+      "I am active and ready to assist you. You can ask me to:\n" +
+      "• **Verify Links:** Paste any suspicious link or domain name.\n" +
+      "• **Analyze Scams:** Inquire about fake KYC alerts, lottery claims, or utility bill threats.\n" +
+      "• **Payment Safety:** Learn how to protect your UPI, debit cards, and banking credentials.\n" +
+      "• **Incident Recovery:** Immediate steps if you already clicked a fraudulent link.\n\n" +
+      "How can I secure your digital assets today?";
+  } else if (lower.includes('what is phishing') || lower.includes('explain phishing') || lower.includes('phishing meaning')) {
+    reply = "🎣 **Understanding Phishing Attacks**:\n\n" +
+      "Phishing is a social engineering technique where cybercriminals impersonate trusted entities (banks, courier services, government agencies) to trick you into revealing sensitive credentials, PINs, or downloading malware.\n\n" +
+      "**Common Variants in India:**\n" +
+      "• **Smishing (SMS Phishing):** \"Your SBI/HDFC account will be blocked today due to pending PAN/KYC. Tap here: bit.ly/sbi-kyc\".\n" +
+      "• **UPI Collect Scams:** Fraudulent reverse-charge requests claiming you have won a reward.\n" +
+      "• **Typosquatting:** Fake websites mimicking real brands (`paytm-portal.xyz`, `icici-secure.top`).\n\n" +
+      "**Golden Rule:** Legitimate institutions never create panic or ask for OTPs/PINs via unsolicited messages.";
+  } else if (lower.includes('kyc') || lower.includes('bank') || lower.includes('sbi') || lower.includes('hdfc') || lower.includes('icici') || lower.includes('otp')) {
+    reply += "Banks (SBI, HDFC, ICICI, etc.) NEVER request KYC re-verification, PAN linking, or passwords via SMS links or WhatsApp.\n\n" +
       "**Actionable Steps:**\n" +
-      "1. Do not click any links or share received OTPs.\n" +
-      "2. Official portals end strictly in `.sbi`, `.hdfcbank.com`, or `.gov.in`.\n" +
-      "3. If compromised, call national cybercrime helpline **1930** immediately to freeze transactions.";
-  } else if (lower.includes('clicked') || lower.includes('opened') || lower.includes('entered password')) {
+      "• **Zero Trust:** Do not tap links or disclose one-time passwords (OTPs).\n" +
+      "• **Verify Domain:** Genuine portals end strictly in `.sbi`, `.hdfcbank.com`, or official `.bank.in` domains.\n" +
+      "• **Golden Hour:** If credentials were typed, dial national helpline **1930** immediately to lock accounts.";
+  } else if (lower.includes('clicked') || lower.includes('opened') || lower.includes('entered') || lower.includes('password') || lower.includes('hack')) {
     reply += "🚨 **Emergency Containment Protocol**:\n\n" +
-      "1. **Disconnect internet**: Turn off Wi-Fi/Mobile data.\n" +
-      "2. **Freeze Bank/Cards**: Use your official banking mobile app to temporarily lock cards and netbanking.\n" +
-      "3. **Change Passwords**: From another clean device, change your primary email and bank passwords.\n" +
-      "4. **Report**: File an incident within 24 hours at **https://cybercrime.gov.in** or call **1930**.";
-  } else if (lower.includes('upi') || lower.includes('qr') || lower.includes('cashback')) {
-    reply += "⚠️ **UPI Security Rule**: Entering your UPI PIN is ONLY required for SENDING money, NEVER for receiving money or cashback.\n\n" +
-      "Any QR code or link claiming to 'credit cashback to your account upon PIN entry' is 100% fraud.";
+      "• **Disconnect Network:** Turn off Wi-Fi and mobile data immediately to prevent command-and-control communication.\n" +
+      "• **Freeze Accounts:** Access your banking app from a trusted alternate phone and freeze your debit/credit cards.\n" +
+      "• **Credential Reset:** Change your email and bank credentials from an uninfected device.\n" +
+      "• **Report Incident:** File within 24 hours at **https://cybercrime.gov.in** or call **1930**.";
+  } else if (lower.includes('upi') || lower.includes('qr') || lower.includes('cashback') || lower.includes('refund') || lower.includes('paytm') || lower.includes('gpay') || lower.includes('phonepe')) {
+    reply += "⚠️ **Golden UPI Security Rule**:\n\n" +
+      "• Entering your UPI PIN is **ONLY** required to SEND money, NEVER to receive money, prizes, or cashbacks.\n" +
+      "• Any QR code or link claiming 'Receive Rs. 5,000 Cashback by entering PIN' is 100% fraudulent.\n" +
+      "• Decline all collect-request alerts in your UPI application.";
+  } else if (lower.includes('apk') || lower.includes('download') || lower.includes('app') || lower.includes('install')) {
+    reply += "⚠️ **Malicious APK / Sideloading Warning**:\n\n" +
+      "• Fraudsters disguise malware as 'SBI Yono Update.apk' or 'Electricity Bill.apk'.\n" +
+      "• Once installed, these grant SMS interception and remote screen monitoring permissions.\n" +
+      "• Never install `.apk` files received on WhatsApp or Telegram. Uninstall immediately and run a malware scan.";
+  } else if (lower.includes('http') || lower.includes('.com') || lower.includes('.xyz') || lower.includes('.in') || lower.includes('domain') || lower.includes('url')) {
+    reply += "🔍 **URL Threat Analysis Advisory**:\n\n" +
+      "• **Domain Stem:** Verify the exact letters before the first `/`. Fraudsters use lookalike characters (homoglyphs) and excessive subdomains like `login.sbi.co.in.scam-server.xyz`.\n" +
+      "• **High-Risk TLDs:** Be skeptical of `.xyz`, `.top`, `.tk`, `.live`, and `.click` extensions.\n" +
+      "• **Deep Inspection:** Paste the complete URL into KAVACH's **URL Scanner** tab for an 18-feature machine learning verdict.\n" +
+      "• **Emergency:** If in doubt, do not submit phone numbers, passwords, or card CVVs.";
   } else {
-    reply += "Based on KAVACH's ML analysis, look for domain mismatches, high-risk TLDs (.xyz, .top), and deceptive keywords in the URL anatomy. Always check the official website independently rather than using links sent via SMS, WhatsApp, or unsolicited emails.";
+    reply += "KAVACH multi-layer defense advises:\n\n" +
+      "• Inspect the URL hierarchy: phishers use lookalike domains (typosquatting), excessive subdomains, or high-risk TLDs (.xyz, .top, .live).\n" +
+      "• Legitimate government services always end in `.gov.in`.\n" +
+      "• Always independently verify websites by searching them in a trusted browser rather than tapping direct SMS/email links.\n" +
+      "• Need emergency help? Call national helpline **1930** or visit **cybercrime.gov.in**.";
   }
 
-  return res.json({ reply });
+  return res.json({
+    reply,
+    response: reply,
+    message: reply,
+    text: reply,
+    status: 'ok',
+    engine: 'kavach-intel'
+  });
 });
 
 // -------------------------------------------------------------

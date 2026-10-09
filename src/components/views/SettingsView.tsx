@@ -33,10 +33,6 @@ export const SettingsView: React.FC = () => {
           </h2>
         </div>
 
-        <p className="text-xs text-slate-500">
-          Adjust the decision threshold for the calibrated logistic risk boundary. Higher sensitivity flags newly registered domains and minor lexical anomalies more aggressively.
-        </p>
-
         <div className="space-y-3 pt-2">
           <div className="flex items-center justify-between text-xs font-mono">
             <span className="text-slate-700 font-semibold">Dangerous Threshold:</span>
@@ -69,10 +65,6 @@ export const SettingsView: React.FC = () => {
           </div>
           <span className="text-xs font-mono text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-300 font-semibold">Incremental Fine-Tuning</span>
         </div>
-
-        <p className="text-xs text-slate-500">
-          Incorporate labeled feedback from user scans and fresh threat feed ingests into the active stacking ensemble weights.
-        </p>
 
         <div className="flex items-center justify-between pt-2">
           <div className="text-xs font-mono text-slate-700">

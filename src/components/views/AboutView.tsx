@@ -14,14 +14,8 @@ export const AboutView: React.FC = () => {
             <h2 className="text-xl font-black text-slate-900 font-mono tracking-wide">
               KAVACH <span className="text-sm font-sans text-rose-600">कवच</span>
             </h2>
-            <p className="text-xs text-slate-600">
-              Your Armor Against Phishing & Advanced Social Engineering Attacks
-            </p>
           </div>
         </div>
-        <p className="text-xs text-slate-700 leading-relaxed pt-2">
-          KAVACH is an enterprise-grade cyber defense intelligence platform developed to protect internet users and financial institutions against weaponized phishing, deceptive typosquatting, malware distributions, and localized UPI fraud schemes in India and globally.
-        </p>
       </div>
 
       {/* Multi-Layer Architecture Grid */}
@@ -61,9 +55,6 @@ export const AboutView: React.FC = () => {
           <Database className="w-4 h-4 text-purple-600" />
           Training Corpus & Data Provenance
         </h3>
-        <p className="text-xs text-slate-600">
-          The models are trained and validated against 542,890 URLs aggregated from public cybersecurity intelligence sources:
-        </p>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-700 pt-1">
           <li className="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200">
             <span className="text-rose-600 font-bold">•</span> PhishTank Verified Active Feeds

@@ -16,16 +16,17 @@ import { ModelInsightsView } from './components/views/ModelInsightsView.tsx';
 import { RedirectThreatMapView } from './components/views/RedirectThreatMapView.tsx';
 import { HistoryView } from './components/views/HistoryView.tsx';
 import { QuizView } from './components/views/QuizView.tsx';
-import { AssistantView } from './components/views/AssistantView.tsx';
 import { EmergencyGuideView } from './components/views/EmergencyGuideView.tsx';
 import { SettingsView } from './components/views/SettingsView.tsx';
 import { AboutView } from './components/views/AboutView.tsx';
+import { KavachamChatbot } from './components/KavachamChatbot.tsx';
 import { TabType } from './types/index.ts';
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<TabType>('dashboard');
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [scannerPreloadUrl, setScannerPreloadUrl] = useState('');
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const handleNavigate = (tab: TabType, targetUrl?: string) => {
     if (targetUrl) {
@@ -74,12 +75,18 @@ export default function App() {
           {currentTab === 'redirect_map' && <RedirectThreatMapView />}
           {currentTab === 'history' && <HistoryView onReScan={(url) => handleNavigate('scanner', url)} />}
           {currentTab === 'quiz' && <QuizView />}
-          {currentTab === 'assistant' && <AssistantView />}
           {currentTab === 'emergency' && <EmergencyGuideView />}
           {currentTab === 'settings' && <SettingsView />}
           {currentTab === 'about' && <AboutView />}
         </main>
       </div>
+
+      {/* Floating Kavacham Chatbot on Left-Most Bottom */}
+      <KavachamChatbot
+        isOpen={isChatbotOpen}
+        setIsOpen={setIsChatbotOpen}
+        isCollapsed={isCollapsed}
+      />
     </div>
   );
 }

@@ -68,9 +68,6 @@ export const ModelInsightsView: React.FC = () => {
               <h2 className="text-lg font-bold text-slate-900 tracking-wide font-mono">
                 Model Telemetry & Explainable AI Benchmark
               </h2>
-              <p className="text-xs text-slate-500">
-                Evaluation results on {dataset.total_urls ? dataset.total_urls.toLocaleString() : '75,000'} URLs, {dataset.sms_samples || '5,185'} SMS/WhatsApp messages, and {dataset.email_samples || '1,985'} emails.
-              </p>
             </div>
           </div>
           <span className="text-xs font-mono text-emerald-700 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 font-semibold">
@@ -174,9 +171,6 @@ export const ModelInsightsView: React.FC = () => {
                   <span className="text-sm font-bold text-slate-900">{smsModel.roc_auc.toFixed(4)}</span>
                 </div>
               </div>
-              <p className="text-[11px] text-slate-500 font-mono">
-                Evaluated on UCI SMS Spam Collection + Curated Indian Banking & Financial Scam Corpus.
-              </p>
             </div>
           )}
 
@@ -207,9 +201,6 @@ export const ModelInsightsView: React.FC = () => {
                   <span className="text-sm font-bold text-slate-900">{emailModel.roc_auc.toFixed(4)}</span>
                 </div>
               </div>
-              <p className="text-[11px] text-slate-500 font-mono">
-                Evaluated on Apache SpamAssassin Benchmark Corpus with embedded URL link inspection.
-              </p>
             </div>
           )}
         </div>

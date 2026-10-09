@@ -57,10 +57,6 @@ export const SmsAnalyzerView: React.FC = () => {
           </div>
         </div>
 
-        <p className="text-xs text-slate-500">
-          Tuned for prevalent Indian cyber fraud archetypes: Fake KYC suspension, Electricity bill disconnection, UPI reverse debit scams, Courier parcel traps, and KBC lotteries.
-        </p>
-
         {/* Presets */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="text-slate-500 font-mono">Common Scams:</span>

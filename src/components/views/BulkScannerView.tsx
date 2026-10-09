@@ -88,10 +88,6 @@ http://indiapost-parcels-tracking.buzz/address_update.php`;
           </button>
         </div>
 
-        <p className="text-xs text-slate-500">
-          Paste a list of URLs (one per line) or drag & drop a plain text/CSV file with up to 500 URLs.
-        </p>
-
         <textarea
           rows={6}
           value={inputText}
